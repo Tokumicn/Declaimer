@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Declaimer", "Declaimer\Declaimer.csproj", "{7DB7DE06-58A5-4B05-B370-0A75B1D0D250}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{FDA38A13-A8BB-4DB3-B37E-377856C62404}"
+	ProjectSection(SolutionItems) = preProject
+		D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Intermec.DataCollection.RFID.AdvancedBRI.dll = D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Intermec.DataCollection.RFID.AdvancedBRI.dll
+		WaitingGodotDeclaimer\SDK\Intermec.DataCollection.RFID.AdvancedBRI.FF3.5.dll = WaitingGodotDeclaimer\SDK\Intermec.DataCollection.RFID.AdvancedBRI.FF3.5.dll
+		D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Intermec.DataCollection.RFID.BasicBRI.dll = D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Intermec.DataCollection.RFID.BasicBRI.dll
+		WaitingGodotDeclaimer\SDK\Intermec.DataCollection.RFID.BasicBRI.FF3.5.dll = WaitingGodotDeclaimer\SDK\Intermec.DataCollection.RFID.BasicBRI.FF3.5.dll
+		D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Symbol.RFID3.Host.dll = D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Symbol.RFID3.Host.dll
+		D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Symbol.RFID3.host.XML = D:\SinoAirWorkSpace\Sinoair服务器工作目录\Product\Exit\Exit-DLL\ExitDll\DLL\Symbol.RFID3.host.XML
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitingGodotDeclaimer", "WaitingGodotDeclaimer\WaitingGodotDeclaimer.csproj", "{F37F10B9-2EDE-4846-B283-9BF10AF3F939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeclaimerCommon", "DeclaimerCommon\DeclaimerCommon.csproj", "{E331DC62-7E56-44B4-B2BF-ADF34D75A15F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeclaimerFactory", "DeclaimerFactory\DeclaimerFactory.csproj", "{130AE5AA-B24C-47D3-8339-35CEAD942A3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DB7DE06-58A5-4B05-B370-0A75B1D0D250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB7DE06-58A5-4B05-B370-0A75B1D0D250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB7DE06-58A5-4B05-B370-0A75B1D0D250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB7DE06-58A5-4B05-B370-0A75B1D0D250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F37F10B9-2EDE-4846-B283-9BF10AF3F939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F37F10B9-2EDE-4846-B283-9BF10AF3F939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F37F10B9-2EDE-4846-B283-9BF10AF3F939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F37F10B9-2EDE-4846-B283-9BF10AF3F939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E331DC62-7E56-44B4-B2BF-ADF34D75A15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E331DC62-7E56-44B4-B2BF-ADF34D75A15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E331DC62-7E56-44B4-B2BF-ADF34D75A15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E331DC62-7E56-44B4-B2BF-ADF34D75A15F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130AE5AA-B24C-47D3-8339-35CEAD942A3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130AE5AA-B24C-47D3-8339-35CEAD942A3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130AE5AA-B24C-47D3-8339-35CEAD942A3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130AE5AA-B24C-47D3-8339-35CEAD942A3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

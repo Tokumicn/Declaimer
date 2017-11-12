@@ -1,0 +1,7 @@
+E:\MyGitProject\Declaimer\DeclaimerCommon\bin\Debug\DeclaimerCommon.dll
+E:\MyGitProject\Declaimer\DeclaimerCommon\bin\Debug\DeclaimerCommon.pdb
+E:\MyGitProject\Declaimer\DeclaimerCommon\obj\Debug\DeclaimerCommon.csprojResolveAssemblyReference.cache
+E:\MyGitProject\Declaimer\DeclaimerCommon\obj\Debug\DeclaimerCommon.dll
+E:\MyGitProject\Declaimer\DeclaimerCommon\obj\Debug\DeclaimerCommon.pdb
+E:\MyGitProject\Declaimer\DeclaimerCommon\bin\Debug\log4net.dll
+E:\MyGitProject\Declaimer\DeclaimerCommon\bin\Debug\log4net.xml

@@ -1,0 +1,13 @@
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\obj\Debug\WaitingGodotDeclaimer.csprojResolveAssemblyReference.cache
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\WaitingGodotDeclaimer.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\WaitingGodotDeclaimer.pdb
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\DeclaimerCommon.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\Symbol.RFID3.Host.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\DeclaimerCommon.pdb
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\Symbol.RFID3.Host.xml
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\obj\Debug\WaitingGodotDeclaimer.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\obj\Debug\WaitingGodotDeclaimer.pdb
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\Intermec.DataCollection.RFID.AdvancedBRI.FF3.5.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\Intermec.DataCollection.RFID.BasicBRI.FF3.5.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\log4net.dll
+E:\MyGitProject\Declaimer\WaitingGodotDeclaimer\bin\Debug\log4net.xml

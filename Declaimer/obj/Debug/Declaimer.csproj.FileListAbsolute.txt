@@ -1,0 +1,8 @@
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Declaimer.exe.config
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Declaimer.exe
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Declaimer.pdb
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.csprojResolveAssemblyReference.cache
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.Properties.Resources.resources
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.csproj.GenerateResource.Cache
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.exe
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.pdb
