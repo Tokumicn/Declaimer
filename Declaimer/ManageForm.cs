@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Declaimer
 {
-    public partial class ManageForm : Form
+    public partial class ManageForm : MetroFramework.Forms.MetroForm
     {
         public ManageForm()
         {

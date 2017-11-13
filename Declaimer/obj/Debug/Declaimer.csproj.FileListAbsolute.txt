@@ -6,3 +6,5 @@ E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.Properties.Resources.res
 E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.csproj.GenerateResource.Cache
 E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.exe
 E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.pdb
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\MetroFramework.dll
+E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.ManageForm.resources
