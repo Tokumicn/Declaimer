@@ -7,9 +7,37 @@ using System.Text;
 
 namespace WaitingGodotDeclaimer
 {
+    /// 读取标签事件
+    /// </summary>
+    /// <param name="tagContent"></param>
+    public delegate void TagStrEventHandler(string tagData);
+
+    /// 读取标签事件委托
+    /// </summary>
+    /// <param name="tagContent"></param>
+    public delegate void TagObjEventHandler(object[] tagData);
+
     public interface IDeclaimer
     {
+        /// <summary>
+        /// 读取电子标签事件 返回值：Object[]
+        /// </summary>
+        event TagObjEventHandler GetRFIDTagObj;
 
+        /// <summary>
+        /// 读取电子标签事件 返回值：字符串
+        /// </summary>
+        event TagStrEventHandler GetRFIDTagStr;
+
+        /// <summary>
+        /// 允许建立连接
+        /// </summary>
+        bool IsAllowConnect { get; set; }
+
+        /// <summary>
+        /// 允许开始读取
+        /// </summary>
+        bool IsAllowStartRead { get; set; }
 
         /// <summary>
         /// 初始化读取器

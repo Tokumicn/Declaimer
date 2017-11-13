@@ -35,7 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MetroFramework">
+    <Reference Include="MetroFramework, Version=1.2.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SDKDLL\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -49,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManageForm.cs" />
+    <Compile Include="ManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ManageForm.Designer.cs">
       <DependentUpon>ManageForm.cs</DependentUpon>
     </Compile>
@@ -78,6 +81,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeclaimerCommon\DeclaimerCommon.csproj">
+      <Project>{e331dc62-7e56-44b4-b2bf-adf34d75a15f}</Project>
+      <Name>DeclaimerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeclaimerFactory\DeclaimerFactory.csproj">
+      <Project>{130ae5aa-b24c-47d3-8339-35cead942a3a}</Project>
+      <Name>DeclaimerFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitingGodotDeclaimer\WaitingGodotDeclaimer.csproj">
+      <Project>{f37f10b9-2ede-4846-b283-9bf10af3f939}</Project>
+      <Name>WaitingGodotDeclaimer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

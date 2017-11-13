@@ -16,6 +16,32 @@ namespace WaitingGodotDeclaimer
         /// </summary>
         private BRIReader m_RFIDReader = null;
         /// <summary>
+        /// 读取电子标签事件 返回值：Object[]
+        /// </summary>
+        public event TagObjEventHandler GetRFIDTagObj;
+
+        /// <summary>
+        /// 读取电子标签事件 返回值：字符串
+        /// </summary>
+        public event TagStrEventHandler GetRFIDTagStr;
+
+        /// <summary>
+        /// 允许建立连接
+        /// </summary>
+        public bool IsAllowConnect
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// 允许开启读取
+        /// </summary>
+        public bool IsAllowStartRead
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// 连接状态
         /// </summary>
         private bool m_IsConnected = false;
@@ -52,14 +78,6 @@ namespace WaitingGodotDeclaimer
         /// 外界GPIO设备 回调处理事件委托
         /// </summary>
         private GPIO_EventHandlerAdv m_GPIEventHandler = null;
-        /// 读取标签事件委托
-        /// </summary>
-        /// <param name="tagContent"></param>
-        public delegate void TagEventHandler(object[] tagData);
-        /// <summary>
-        /// 读取电子标签事件 回调 （业务层使用）
-        /// </summary>
-        public event TagEventHandler GetRFIDTag;
         /// <summary>
         /// 读取器IP地址
         /// </summary>
@@ -173,17 +191,20 @@ namespace WaitingGodotDeclaimer
                 m_RFIDReader = new BRIReader(null, this.ReaderIP);
                 if (m_RFIDReader.IsConnected)
                 {
+                    IsAllowConnect = true;
                     returnMsg.CallMessage = "读取器连接成功.";
                     returnMsg.CallStatus = true;
                 }
                 else
                 {
+                    IsAllowConnect = false;
                     returnMsg.CallMessage = "读取器连接失败.";
                     returnMsg.CallStatus = false;
                 }
             }
             catch (BasicReaderException bre)
             {
+                IsAllowConnect = false;
                 returnMsg.CallMessage = "读取器连接失败 :" + bre.Message;
                 returnMsg.CallStatus = false;
             }
@@ -200,6 +221,7 @@ namespace WaitingGodotDeclaimer
 
             if (m_RFIDReader == null)
             {
+                IsAllowStartRead = false;
                 returnMsg.CallMessage = "读取器开启失败 : 读取器对象为空.";
                 returnMsg.CallStatus = false;
             }
@@ -219,12 +241,14 @@ namespace WaitingGodotDeclaimer
                     SetReaderAttributes();
                     SetTriggers();
 
+                    IsAllowStartRead = true;
                     returnMsg.CallMessage = "读取器开启成功.";
                     returnMsg.CallStatus = true;
                 }
             }
             catch (BasicReaderException brex)
             {
+                IsAllowStartRead = false;
                 returnMsg.CallMessage = "读取器属性设置失败 : 异常信息 === " + brex.Message;
                 returnMsg.CallStatus = false;
             }
@@ -642,7 +666,7 @@ namespace WaitingGodotDeclaimer
                     object[] tempObjectTag = CheckTagType(tagString, tagAnt);
                     if (Convert.ToBoolean(tempObjectTag[0]))
                     {
-                        GetRFIDTag(tempObjectTag);
+                        GetRFIDTagObj(tempObjectTag);
                     }
                 }
 

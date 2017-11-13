@@ -18,6 +18,31 @@ namespace WaitingGodotDeclaimer
         /// </summary>
         private RFIDReader m_RFIDReader = null;
         /// <summary>
+        /// 读取电子标签事件 返回值：Object[]
+        /// </summary>
+        public event TagObjEventHandler GetRFIDTagObj;
+
+        /// <summary>
+        /// 读取电子标签事件 返回值：字符串
+        /// </summary>
+        public event TagStrEventHandler GetRFIDTagStr;
+        /// <summary>
+        /// 允许建立连接
+        /// </summary>
+        public bool IsAllowConnect
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// 允许开启读取
+        /// </summary>
+        public bool IsAllowStartRead
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// 连接状态
         /// </summary>
         private bool m_IsConnected = false;
@@ -37,15 +62,6 @@ namespace WaitingGodotDeclaimer
         /// 目前还没搞明白
         /// </summary>
         private bool m_ReaderInitiatedDisconnectionReceived = false;
-
-        /// 读取标签事件
-        /// </summary>
-        /// <param name="tagContent"></param>
-        public delegate void TagEventHandler(string tagData);
-        /// <summary>
-        /// 读取电子标签事件 回调 （业务使用）
-        /// </summary>
-        public event TagEventHandler GetRFIDTag;
 
         /// <summary>
         /// 读取器IP地址
@@ -179,6 +195,7 @@ namespace WaitingGodotDeclaimer
             //创建读取器对象
             m_RFIDReader = new RFIDReader(this.ReaderIP, uint.Parse(this.ReaderPort), uint.Parse(this.ConnectTimeOut));
 
+            IsAllowConnect = true;
             returnMsg.CallStatus = true;
             returnMsg.CallMessage = "Reader Init Success.";
 
@@ -205,6 +222,8 @@ namespace WaitingGodotDeclaimer
                 {
                     //连接操作
                     m_RFIDReader.Connect();
+                    //允许开始读取
+                    IsAllowStartRead = true;
                     //设置功率
                     returnMsg = SetReaderPower(this.ReaderPowerList);
                     SetReaderAntennas(this.ReaderAntennasList);
@@ -275,6 +294,15 @@ namespace WaitingGodotDeclaimer
         private static DataTable dt = null;//进行排序
         private void myReadNotify(Events.ReadEventData eventData)
         {
+            //SampleTagAnalysis();
+            RSSI_ANT_TagAnalysis();
+        }
+
+        /// <summary>
+        /// 简单解析  返回tag String
+        /// </summary>
+        private void SampleTagAnalysis()
+        {
             //是否已经开启读取
             if (m_IsReading)
             {
@@ -344,7 +372,7 @@ namespace WaitingGodotDeclaimer
                     {
                         for (int rti = 0; rti < dt3.Rows.Count; rti++)
                         {
-                            GetRFIDTag(dt3.Rows[rti][0].ToString());
+                            GetRFIDTagStr(dt3.Rows[rti][0].ToString());
                         }
                     }
                     else
@@ -352,12 +380,43 @@ namespace WaitingGodotDeclaimer
                         //第一读取
                         if (!string.IsNullOrEmpty(dt3.Rows[0][0].ToString()))
                         {
-                            if (GetRFIDTag != null)
+                            if (GetRFIDTagStr != null)
                             {
-                                GetRFIDTag(dt3.Rows[0][0].ToString());
+                                GetRFIDTagStr(dt3.Rows[0][0].ToString());
                             }
                         }
                         m_IsReading = false;//读取后，关闭
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// RSSI ANT 解析  返回Object[]
+        /// </summary>
+        private void RSSI_ANT_TagAnalysis()
+        {
+            //是否已经开启读取
+            if (m_IsReading)
+            {
+                object[] objTag = new object[3];
+                //Thread.Sleep(500);
+                Symbol.RFID3.TagData[] tagDataArray = m_RFIDReader.Actions.GetReadTags(100);
+                if (tagDataArray != null)
+                {
+                    //解析标签
+                    if (tagDataArray.Length > 0)
+                    {
+                        for (int tagi = 0; tagi < tagDataArray.Length; tagi++)
+                        {
+                            Symbol.RFID3.TagData tag = tagDataArray[tagi];
+
+                            objTag[0] = tag.TagID;
+                            objTag[1] = tag.PeakRSSI;
+                            objTag[2] = tag.AntennaID;
+
+                            GetRFIDTagObj(objTag);
+                        }
                     }
                 }
             }
@@ -609,5 +668,6 @@ namespace WaitingGodotDeclaimer
                 }
             }
         }
+
     }
 }

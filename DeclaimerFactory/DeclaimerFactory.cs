@@ -14,7 +14,7 @@ namespace DeclaimerFactory
         /// </summary>
         /// <param name="hardwareType"></param>
         /// <returns></returns>
-        public IDeclaimer CreateDeclaimer(DeclaimerHardwareType hardwareType)
+        public static IDeclaimer CreateDeclaimer(DeclaimerHardwareType hardwareType)
         {
             IDeclaimer declarmer = null;
             switch (hardwareType)

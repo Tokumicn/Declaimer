@@ -8,3 +8,15 @@ E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.exe
 E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.pdb
 E:\MyGitProject\Declaimer\Declaimer\bin\Debug\MetroFramework.dll
 E:\MyGitProject\Declaimer\Declaimer\obj\Debug\Declaimer.ManageForm.resources
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\DeclaimerCommon.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\DeclaimerFactory.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\WaitingGodotDeclaimer.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\log4net.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Intermec.DataCollection.RFID.AdvancedBRI.FF3.5.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Symbol.RFID3.Host.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Intermec.DataCollection.RFID.BasicBRI.FF3.5.dll
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\DeclaimerCommon.pdb
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\DeclaimerFactory.pdb
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\WaitingGodotDeclaimer.pdb
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\log4net.xml
+E:\MyGitProject\Declaimer\Declaimer\bin\Debug\Symbol.RFID3.Host.xml
