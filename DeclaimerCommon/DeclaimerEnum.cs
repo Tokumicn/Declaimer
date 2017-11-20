@@ -60,4 +60,23 @@ namespace DeclaimerCommon
         /// </summary>
         EventReading
     }
+
+    /// <summary>
+    /// 日志记录类型
+    /// </summary>
+    public enum LoggerClassType
+    {
+        /// <summary>
+        /// 操作界面日志记录
+        /// </summary>
+        DeclaimerRollingFileAppender,
+        /// <summary>
+        /// Fiex Reader日志记录
+        /// </summary>
+        DeclaimerWaitingGodotRollingFileAppender,
+        /// <summary>
+        /// Handheld Reader日志记录
+        /// </summary>
+        DeclaimerWhiteNightRollingFileAppender
+    }
 }

@@ -165,6 +165,9 @@ namespace WaitingGodotDeclaimer
         public ReturnMessage InitReader(string strIP, string strPort, string connTimeOut, List<string> readerPowerList, List<string> readerAntennasList)
         {
             ReturnMessage returnMsg = new ReturnMessage();
+            //初始化   Fixed Reader日志记录对象
+            DeclaimerReaderLog.InstanceLogger(LoggerClassType.DeclaimerWaitingGodotRollingFileAppender);
+
             //默认值设置
             if (string.IsNullOrEmpty(strPort))
             {
@@ -195,9 +198,13 @@ namespace WaitingGodotDeclaimer
             //创建读取器对象
             m_RFIDReader = new RFIDReader(this.ReaderIP, uint.Parse(this.ReaderPort), uint.Parse(this.ConnectTimeOut));
 
+            //设置允许连接
             IsAllowConnect = true;
-            returnMsg.CallStatus = true;
+
             returnMsg.CallMessage = "Reader Init Success.";
+            returnMsg.CallStatus = true;
+            //日志记录
+            DeclaimerReaderLog.Info("[Reader Init Success.] ==== [" + DateTime.Now.ToString() + "]");
 
             return returnMsg;
         }
@@ -214,6 +221,8 @@ namespace WaitingGodotDeclaimer
             {
                 returnMsg.CallStatus = false;
                 returnMsg.CallMessage = "读取器开启失败 : 读取器对象为空.";
+                //日志记录
+                DeclaimerReaderLog.Error("[读取器开启失败 : 读取器对象为空.] ==== [" + DateTime.Now.ToString() + "]");
             }
 
             try
@@ -226,6 +235,8 @@ namespace WaitingGodotDeclaimer
                     IsAllowStartRead = true;
                     //设置功率
                     returnMsg = SetReaderPower(this.ReaderPowerList);
+                    //日志记录
+                    DeclaimerReaderLog.Info("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                     SetReaderAntennas(this.ReaderAntennasList);
                 }
 
@@ -270,12 +281,16 @@ namespace WaitingGodotDeclaimer
                 {
                     returnMsg.CallStatus = false;
                     returnMsg.CallMessage = "Connect Configuration : " + ofe.VendorMessage;
+                    //日志记录
+                    DeclaimerReaderLog.Error("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
             }
             catch (OperationFailureException ofe)
             {
                 returnMsg.CallStatus = false;
                 returnMsg.CallMessage = "Connect Error : " + ofe.StatusDescription;
+                //日志记录
+                DeclaimerReaderLog.Error("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
             }
             return returnMsg;
         }
@@ -296,99 +311,6 @@ namespace WaitingGodotDeclaimer
         {
             //SampleTagAnalysis();
             RSSI_ANT_TagAnalysis();
-        }
-
-        /// <summary>
-        /// 简单解析  返回tag String
-        /// </summary>
-        private void SampleTagAnalysis()
-        {
-            //是否已经开启读取
-            if (m_IsReading)
-            {
-                dt = new DataTable();
-                dt.Columns.Add("str", typeof(string));
-                dt.Columns.Add("date", typeof(string));
-                //Thread.Sleep(500);
-                Symbol.RFID3.TagData[] tagDataArray = m_RFIDReader.Actions.GetReadTags(100);
-                if (tagDataArray != null)
-                {
-                    //解析标签
-                    if (tagDataArray.Length > 0)
-                    {
-                        for (int tagi = 0; tagi < tagDataArray.Length; tagi++)
-                        {
-                            Symbol.RFID3.TagData tag = tagDataArray[tagi];
-
-                            if (!m_TagTable.ContainsKey(tag.TagID))
-                            {
-                                m_TagTable.Add(tag.TagID, 0);
-                            }
-                            else
-                            {
-                                continue;
-                            }
-
-                            #region 转换字符串
-                            //转换字符串
-                            string memoryBankData = tag.TagID;
-                            int tempint = memoryBankData.Length % 2;
-                            if (tempint != 0)
-                            {
-                                memoryBankData += "0";
-                            }
-                            int maxLength = memoryBankData.Length / 2;
-                            byte[] bytes = new byte[maxLength];
-                            for (int i = 0; i < maxLength; i++)
-                            {
-                                bytes[i] = Convert.ToByte(memoryBankData.Substring(i * 2, 2), 16);
-                            }
-                            string msgContent = System.Text.Encoding.Default.GetString(bytes, 0, bytes.Length);
-                            object[] tempTag = CheckTagType(msgContent);
-                            if (Convert.ToBoolean(tempTag[0]))
-                            {
-                                DataRow newRow = dt.NewRow();
-                                newRow["str"] = tempTag[2];
-                                newRow["date"] = tag.PeakRSSI;
-                                dt.Rows.Add(newRow);
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            #endregion
-                        }
-
-                    }
-                }
-
-                DataView dv = dt.DefaultView;
-                dv.Sort = "date  asc ";
-                DataTable dt3 = dv.ToTable();
-                if (dt3.Rows.Count > 0)
-                {
-                    //返回标签
-                    if (IsContinuousRead)
-                    {
-                        for (int rti = 0; rti < dt3.Rows.Count; rti++)
-                        {
-                            GetRFIDTagStr(dt3.Rows[rti][0].ToString());
-                        }
-                    }
-                    else
-                    {
-                        //第一读取
-                        if (!string.IsNullOrEmpty(dt3.Rows[0][0].ToString()))
-                        {
-                            if (GetRFIDTagStr != null)
-                            {
-                                GetRFIDTagStr(dt3.Rows[0][0].ToString());
-                            }
-                        }
-                        m_IsReading = false;//读取后，关闭
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -499,6 +421,8 @@ namespace WaitingGodotDeclaimer
                     {
                         resultMsg.CallStatus = false;
                         resultMsg.CallMessage = "设置功率失败！请连接读取器后再设置功率。";
+                        //日志记录
+                        DeclaimerReaderLog.Info("[" + resultMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                         //"Please connect to a reader";
                     }
                 }
@@ -506,16 +430,22 @@ namespace WaitingGodotDeclaimer
                 {
                     resultMsg.CallStatus = false;
                     resultMsg.CallMessage = "InvalidUsageException" + iue.VendorMessage;
+                    //日志记录
+                    DeclaimerReaderLog.Error("[" + resultMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
                 catch (OperationFailureException ofe)
                 {
                     resultMsg.CallStatus = false;
                     resultMsg.CallMessage = "OperationFailureException :" + ofe.StatusDescription;
+                    //日志记录
+                    DeclaimerReaderLog.Error("[" + resultMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
                 catch (Exception ex)
                 {
                     resultMsg.CallStatus = false;
                     resultMsg.CallMessage = "OperationFailureException :" + ex.Message;
+                    //日志记录
+                    DeclaimerReaderLog.Error("[" + resultMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
             }
             return resultMsg;
@@ -568,11 +498,15 @@ namespace WaitingGodotDeclaimer
 
                     returnMsg.CallStatus = true;
                     returnMsg.CallMessage = "Close Connection Success.";
+                    //日志记录
+                    DeclaimerReaderLog.Info("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
                 catch (OperationFailureException ofe)
                 {
                     returnMsg.CallStatus = false;
                     returnMsg.CallMessage = "Close Connection Error : " + ofe.VendorMessage;
+                    //日志记录
+                    DeclaimerReaderLog.Error("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
                 }
             }
 
@@ -610,11 +544,16 @@ namespace WaitingGodotDeclaimer
                 //标记开始读取
                 m_IsReading = true;
                 m_TagTable.Clear();//标签去重存储区
+
+                returnMsg.CallMessage = "开启读取。";
+                returnMsg.CallStatus = true;
             }
             else
             {
                 returnMsg.CallMessage = "请先连接读取器后开始读取。";
                 returnMsg.CallStatus = false;
+                //日志记录
+                DeclaimerReaderLog.Error("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
             }
             return returnMsg;
         }
@@ -638,11 +577,16 @@ namespace WaitingGodotDeclaimer
                     m_RFIDReader.Actions.Inventory.Stop();
                 }
                 m_IsReading = false;
+
+                returnMsg.CallMessage = "成功停止读取.";
+                returnMsg.CallStatus = true;
             }
             else
             {
                 returnMsg.CallMessage = "请先连接读取器后开始读取。";
                 returnMsg.CallStatus = false;
+                //日志记录
+                DeclaimerReaderLog.Error("[" + returnMsg.CallMessage + "] ==== [" + DateTime.Now.ToString() + "]");
             }
             return returnMsg;
         }

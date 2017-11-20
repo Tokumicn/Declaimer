@@ -208,6 +208,9 @@ namespace WaitingGodotDeclaimer
                 returnMsg.CallMessage = "读取器连接失败 :" + bre.Message;
                 returnMsg.CallStatus = false;
             }
+
+            //创建日志记录对象
+            DeclaimerCommon.DeclaimerReaderLog.InstanceLogger(LoggerClassType.DeclaimerWaitingGodotRollingFileAppender);
             return returnMsg;
         }
 

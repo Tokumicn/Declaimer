@@ -1,0 +1,5 @@
+E:\MyGitProject\Declaimer\WhiteNightDeclaimer\bin\Debug\WhiteNightDeclaimer.dll
+E:\MyGitProject\Declaimer\WhiteNightDeclaimer\bin\Debug\WhiteNightDeclaimer.pdb
+E:\MyGitProject\Declaimer\WhiteNightDeclaimer\obj\Debug\WhiteNightDeclaimer.csprojResolveAssemblyReference.cache
+E:\MyGitProject\Declaimer\WhiteNightDeclaimer\obj\Debug\WhiteNightDeclaimer.dll
+E:\MyGitProject\Declaimer\WhiteNightDeclaimer\obj\Debug\WhiteNightDeclaimer.pdb

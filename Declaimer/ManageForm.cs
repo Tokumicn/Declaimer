@@ -84,8 +84,6 @@ namespace Declaimer
             MessageBox.Show(tagData);
         }
 
-
-
         /// <summary>
         /// 读取器回调方法
         /// </summary>

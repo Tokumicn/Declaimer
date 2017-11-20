@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="DeclaimerCommon.cs" />
     <Compile Include="DeclaimerEnum.cs" />
-    <Compile Include="Log4NetHelper.cs" />
+    <Compile Include="DeclaimerReaderLog.cs" />
+    <Compile Include="DeclaimerLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
